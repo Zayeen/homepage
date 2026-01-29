@@ -49,5 +49,5 @@ github_username: Zayeen
 repository: Zayeen/homepage
 
 # Pagination (future use)
-paginate: 6
-paginate_path: "/blog/page:num/"
+# paginate: 6
+# paginate_path: "/blog/page:num/"
