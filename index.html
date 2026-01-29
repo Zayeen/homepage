@@ -19,7 +19,7 @@ title: Professional IoT Journal
     <section id="articles">
         <h2 class="section-title">Latest Articles</h2>
         <div class="articles-grid">
-            {% for post in site.posts reversed %}
+            {% for post in site.posts %}
             <article class="article-card">
                 <div class="article-meta">
                     {{ post.date | date: "%B %d, %Y" }} • {{ post.tags | join: ", " }}
