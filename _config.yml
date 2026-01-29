@@ -25,6 +25,8 @@ collections:
     output: true
     permalink: /blog/:year/:month/:day/:title/
 
+future: true
+
 # Defaults
 defaults:
 - scope:
