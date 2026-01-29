@@ -1,0 +1,39 @@
+---
+layout: default
+title: Professional IoT Journal
+---
+
+<div class="container">
+    <section class="hero">
+        <h1>The Future of <span style="color: var(--accent);">Connected</span> Living.</h1>
+        <p>Insights on smart home security, automation, and the evolving frontier of IoT. Built for professionals, researchers, and enthusiasts.</p>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About the Journal</h2>
+        <div class="about-content">
+            <p>homepage is a dedicated space for deep dives into Internet of Things (IoT) ecosystems. We focus on security protocols, interoperability standards like Matter, and the integration of Artificial Intelligence in home automation. Our mission is to provide high-quality, actionable technical content that moves the industry forward.</p>
+        </div>
+    </section>
+
+    <section id="articles">
+        <h2 class="section-title">Featured Articles</h2>
+        <div class="articles-grid">
+            {% for post in site.posts limit:3 %}
+            <article class="article-card">
+                <div class="article-meta">
+                    {{ post.date | date: "%B %d, %Y" }} • {{ post.tags | join: ", " }}
+                </div>
+                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+                <a href="{{ post.url | relative_url }}" class="read-link">
+                    Read full article 
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 4px;">
+                        <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+</div>

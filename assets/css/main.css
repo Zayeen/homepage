@@ -1,0 +1,158 @@
+:root {
+    --bg: #ffffff;
+    --fg: #0f172a;
+    --accent: #4f46e5;
+    --accent-hover: #4338ca;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --card-bg: #f8fafc;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Header */
+header {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--fg);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+}
+
+/* Hero */
+.hero {
+    padding: 6rem 0 4rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: var(--muted);
+    max-width: 600px;
+}
+
+/* Section */
+section {
+    padding: 4rem 0;
+}
+
+.section-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 2rem;
+}
+
+/* About */
+.about-content {
+    font-size: 1.125rem;
+    color: var(--fg);
+}
+
+/* Articles */
+.articles-grid {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.article-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.article-card:last-child {
+    border-bottom: none;
+}
+
+.article-meta {
+    font-size: 0.875rem;
+    color: var(--muted);
+}
+
+.article-card h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.article-card h3 a {
+    color: var(--fg);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.article-card h3 a:hover {
+    color: var(--accent);
+}
+
+.article-card p {
+    color: var(--muted);
+}
+
+.read-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Footer */
+footer {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}

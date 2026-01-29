@@ -1,0 +1,53 @@
+# Site Settings
+title: homepage
+description: Exploring the connected world, one device at a time.
+author: homepage
+email: your-email@example.com
+url: https://zayeen.github.io
+baseurl: /homepage
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:year/:month/:day/:title/
+
+# Plugins
+plugins:
+- jekyll-feed
+- jekyll-seo-tag
+- jekyll-sitemap
+- jekyll-paginate
+- jekyll-minify-html
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+- scope:
+    path: ""
+    type: "posts"
+  values:
+    layout: "default"
+    comments: false
+
+# Exclude from processing
+exclude:
+- Gemfile
+- Gemfile.lock
+- node_modules
+- vendor
+- README.md
+- .git
+- .gitignore
+
+# Site social
+github_username: Zayeen
+repository: Zayeen/homepage
+
+# Pagination (future use)
+paginate: 6
+paginate_path: "/blog/page:num/"
