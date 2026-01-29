@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Evolution of Open Source Home Intelligence"
-date: 2026-02-01
+date: 2026-01-30
 tags: [Open Source, Smart Home, Future]
 ---
 
