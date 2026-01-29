@@ -19,7 +19,8 @@ title: Professional IoT Journal
     <section id="articles">
         <h2 class="section-title">Featured Articles</h2>
         <div class="articles-grid">
-            {% for post in site.posts limit:3 %}
+            {% assign sorted_posts = site.posts | sort: "date" | reverse %}
+            {% for post in sorted_posts limit:3 %}
             <article class="article-card">
                 <div class="article-meta">
                     {{ post.date | date: "%B %d, %Y" }} • {{ post.tags | join: ", " }}
