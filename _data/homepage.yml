@@ -1,14 +1,15 @@
 hero:
-  title: "The Future of <span style=\"color: var(--accent);\">Connected</span> Living."
-  description: "Insights on smart home security, automation, and the evolving frontier of IoT. Built for professionals, researchers, and enthusiasts."
+  title: "De Toekomst van <span style=\"color: var(--accent);\">Revolutionaire</span> Technologie."
+  description: "Verken baanbrekende innovaties, slimme automatisering en de grensverleggende technologieën die onze wereld transformeren. Voor visionairs, onderzoekers en technologie-liefhebbers."
 
 about:
-  title: "About the Journal"
-  content: "homepage is a dedicated space for deep dives into Internet of Things (IoT) ecosystems. We focus on security protocols, interoperability standards like Matter, and the integration of Artificial Intelligence in home automation. Our mission is to provide high-quality, actionable technical content that moves the industry forward."
+  title: "Over het Tijdschrift"
+  content: "homepage is het platform voor diepgaande verhalen over de technologieën die de toekomst vormen. Van kunstmatige intelligentie en robotica tot duurzame innovaties en digitale transformatie: wij bieden inzichten die inspireren en concrete ideeën geven voor toepassing. Ons doel is om professionals en nieuwsgierige geesten te verbinden met de nieuwste trends en ontwikkelingen."
 
 articles:
-  title: "Latest Articles"
-  read_more: "Read full article"
+  title: "Meest Recente Artikelen"
+  read_more: "Lees volledig artikel"
 
 footer:
-  copyright_text: "homepage. Professional IoT Journal."
+  copyright_text: "homepage. Het Professionele Tijdschrift voor Innovatie en Technologie."
+
