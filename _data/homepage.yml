@@ -9,3 +9,6 @@ about:
 articles:
   title: "Latest Articles"
   read_more: "Read full article"
+
+footer:
+  copyright_text: "homepage. Professional IoT Journal."
