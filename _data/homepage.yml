@@ -1,0 +1,11 @@
+hero:
+  title: "The Future of <span style=\"color: var(--accent);\">Connected</span> Living."
+  description: "Insights on smart home security, automation, and the evolving frontier of IoT. Built for professionals, researchers, and enthusiasts."
+
+about:
+  title: "About the Journal"
+  content: "homepage is a dedicated space for deep dives into Internet of Things (IoT) ecosystems. We focus on security protocols, interoperability standards like Matter, and the integration of Artificial Intelligence in home automation. Our mission is to provide high-quality, actionable technical content that moves the industry forward."
+
+articles:
+  title: "Latest Articles"
+  read_more: "Read full article"
