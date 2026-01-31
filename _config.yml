@@ -50,6 +50,6 @@ exclude:
 github_username: Zayeen
 repository: Zayeen/homepage
 
-# Pagination (future use)
-# paginate: 6
-# paginate_path: "/blog/page:num/"
+# Pagination
+paginate: 6
+paginate_path: "/blog/page:num/"
