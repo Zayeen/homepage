@@ -8,7 +8,24 @@ layout: default
                 {% if page.tags %}
                     {{ page.tags | join: ", " }}
                 {% endif %}
-                • {{ page.date | date: "%B %d, %Y" }}
+                • 
+                {% assign m = page.date | date: "%m" %}
+                {{ page.date | date: "%-d" }}
+                {% case m %}
+                  {% when '01' %}januari
+                  {% when '02' %}februari
+                  {% when '03' %}maart
+                  {% when '04' %}april
+                  {% when '05' %}mei
+                  {% when '06' %}juni
+                  {% when '07' %}juli
+                  {% when '08' %}augustus
+                  {% when '09' %}september
+                  {% when '10' %}oktober
+                  {% when '11' %}november
+                  {% when '12' %}december
+                {% endcase %}
+                {{ page.date | date: "%Y" }} om {{ page.date | date: "%H:%M" }}
             </div>
             <h1 style="font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.04em;">{{ page.title }}</h1>
         </header>
