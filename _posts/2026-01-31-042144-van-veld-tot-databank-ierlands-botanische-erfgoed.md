@@ -7,7 +7,7 @@ tags: [databases, data-engineering, innovatie, onderzoek, duurzaamheid]
 description: "Ontdek hoe de digitalisering van het Nationale Herbarium van Ierland een schat aan botanische gegevens ontsluit, van kwetsbare planten tot klimaatinzichten."
 ---
 
-### Van Veld tot Databank
+# Van Veld tot Databank
 
 Stel je eens voor: een stille ruimte, waar rijen met hoge kasten zich uitstrekken als de aderen van een eeuwenoud bos. Binnenin, tussen vellen zuurvrij papier, liggen de gedroogde, zorgvuldig geconserveerde overblijfselen van planten die decennia, soms zelfs eeuwen, geleden zijn verzameld. Elk exemplaar vertelt een verhaal; van de bodem waaruit het groeide, de wind die erdoorheen blies, tot de mens die het plukte. Dit is het hart van een herbarium, een levend archief van de natuurlijke wereld, en het Nationale Herbarium van Ierland is zo'n fascinerende plek.
 
