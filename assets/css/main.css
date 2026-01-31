@@ -510,10 +510,15 @@ footer {
 }
 
 @media (max-width: 640px) {
-    .hero { padding: 6rem 0 4rem; }
-    .hero h1 { font-size: 3.5rem; }
-    .article-card h3 { font-size: 2rem; }
-    .nav-links { display: none; }
+    header { padding: 0.75rem 0; }
+    .hero { padding: 4rem 0 3rem; }
+    .hero h1 { font-size: 2.75rem; }
+    .article-card h3 { font-size: 1.75rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.875rem; }
+    .logo { margin-right: 0.5rem; font-size: 1.125rem; }
+    #theme-toggle { padding: 0.4rem; }
+    #theme-toggle svg { width: 18px; height: 18px; }
 }
 
 /* Animations */

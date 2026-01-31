@@ -11,4 +11,10 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 vendor/
+.bundle/
+*.gem
+*.log
 # Gemfile.lock  <-- Removed from ignore to follow best practices
+
+# Environment
+.env*
