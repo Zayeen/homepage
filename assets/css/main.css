@@ -193,6 +193,15 @@ section {
 .articles-grid {
     display: grid;
     gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.blog-filters {
+    position: relative;
+    z-index: 10;
+    background-color: var(--bg);
+    padding: 1rem 0;
 }
 
 .article-card {
@@ -211,6 +220,7 @@ section {
     border-color: var(--border);
     transform: translateY(-4px);
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05);
+    z-index: 5;
 }
 
 [data-theme="dark"] .article-card:hover {
