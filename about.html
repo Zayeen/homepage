@@ -4,20 +4,59 @@ title: Over het Tijdschrift
 ---
 
 <div class="container">
-    <section class="hero" style="padding: 4rem 0 2rem;">
-        <h1 style="font-size: 3rem;">{{ site.data.homepage.about.title }}</h1>
+    <!-- Hero Section -->
+    <section class="hero" style="padding: 10rem 0 6rem; border-bottom: 2px solid var(--fg);">
+        <h1 style="font-size: clamp(4rem, 15vw, 8rem); line-height: 0.85; margin-bottom: 3rem;">Over<br>ons.</h1>
+        <p style="font-size: 2rem; color: var(--fg); max-width: 800px; font-weight: 500; line-height: 1.2; letter-spacing: -0.02em;">
+            {{ site.data.homepage.about.title }}
+        </p>
     </section>
 
-    <section style="padding: 2rem 0;">
-        <div class="about-content" style="font-size: 1.25rem; line-height: 1.8; color: var(--fg); max-width: 800px;">
+    <!-- Main Content Section -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 6rem;">
+        <div style="font-size: 1.5rem; line-height: 1.4; font-weight: 450;">
+            <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 2rem;">01 / Het Verhaal</div>
             <p>{{ site.data.homepage.about.content }}</p>
         </div>
-    </section>
+        <div style="border-left: 1px solid var(--border); padding-left: 4rem; display: flex; flex-direction: column; justify-content: center;">
+            <div style="font-size: 8rem; font-weight: 800; line-height: 1; letter-spacing: -0.05em; color: var(--border);">Tech.</div>
+            <div style="font-size: 1.125rem; color: var(--muted); margin-top: 2rem; max-width: 300px;">
+                Verken baanbrekende innovaties en slimme automatisering.
+            </div>
+        </div>
+    </div>
 
-    <section style="padding: 4rem 0; border-top: 1px solid var(--border); margin-top: 4rem;">
-        <h2 class="section-title">Onze Missie</h2>
-        <div style="font-size: 1.125rem; color: var(--muted); max-width: 700px;">
-            <p>Bij homepage streven we ernaar om complexe technologische concepten toegankelijk te maken voor een breed publiek van professionals en liefhebbers. We geloven dat kennisdeling de sleutel is tot innovatie en vooruitgang.</p>
+    <!-- Mission Section -->
+    <section style="margin-top: 10rem; padding: 6rem 0; background-color: var(--fg); color: var(--bg); margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+                <div>
+                    <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 2rem;">02 / Onze Missie</div>
+                    <h2 style="font-size: 4rem; font-weight: 800; line-height: 0.95; letter-spacing: -0.04em;">Kennisdeling als motor van vooruitgang.</h2>
+                </div>
+                <div style="font-size: 1.25rem; line-height: 1.6; padding-top: 3rem;">
+                    <p>Bij homepage streven we ernaar om complexe technologische concepten toegankelijk te maken voor een breed publiek van professionals en liefhebbers. We geloven dat kennisdeling de sleutel is tot innovatie en vooruitgang.</p>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- Values / Focus Section -->
+    <div style="margin-top: 10rem; margin-bottom: 10rem;">
+        <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 4rem;">03 / Focusgebieden</div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+            <div style="padding: 2rem; border: 1px solid var(--border);">
+                <div style="font-size: 3rem; font-weight: 800; margin-bottom: 1rem;">AI.</div>
+                <p style="color: var(--muted);">De impact van kunstmatige intelligentie op onze samenleving.</p>
+            </div>
+            <div style="padding: 2rem; border: 1px solid var(--border);">
+                <div style="font-size: 3rem; font-weight: 800; margin-bottom: 1rem;">IOT.</div>
+                <p style="color: var(--muted);">De verbonden wereld van apparaten en systemen.</p>
+            </div>
+            <div style="padding: 2rem; border: 1px solid var(--border);">
+                <div style="font-size: 3rem; font-weight: 800; margin-bottom: 1rem;">DEV.</div>
+                <p style="color: var(--muted);">Moderne software architectuur en innovatieve planning.</p>
+            </div>
+        </div>
+    </div>
 </div>
