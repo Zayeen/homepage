@@ -6,16 +6,16 @@ layout: default
     .post-header {
         position: relative !important;
         z-index: -1;
+        text-align: left;
+        padding: 0;
+        border: none;
+        margin: 0;
     }
 </style>
 <div class="container">
-    <article class="post-content" style="padding: 4rem 0;">
-        <header class="post-header" style="margin-bottom: 4rem;">
-            <div style="font-size: 0.875rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; margin-bottom: 1rem;">
-                {% if page.tags %}
-                    {{ page.tags | join: ", " }}
-                {% endif %}
-                • 
+    <article class="post-content">
+        <header class="post-header">
+            <div class="post-meta-header">
                 {% assign m = page.date | date: "%m" %}
                 {{ page.date | date: "%-d" }}
                 {% case m %}
@@ -32,16 +32,15 @@ layout: default
                   {% when '11' %}november
                   {% when '12' %}december
                 {% endcase %}
-                {{ page.date | date: "%Y" }} om {{ page.date | date: "%H:%M" }}
+                {{ page.date | date: "%Y" }} • {{ page.tags | join: ", " }}
             </div>
-            <h1 style="font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.04em;">{{ page.title }}</h1>
         </header>
         
         <div class="post-body" style="font-size: 1.25rem; line-height: 1.7; color: var(--fg);">
             {{ content }}
         </div>
 
-        <footer class="post-footer" style="margin-top: 6rem; padding-top: 2rem; border-top: 1px solid var(--border);">
+        <footer class="post-footer">
             <a href="{{ '/' | relative_url }}" style="font-weight: 700; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -51,15 +50,6 @@ layout: default
         </footer>
     </article>
 </div>
-
-<style>
-    .post-body h2, .post-body h3 { margin-top: 3rem; margin-bottom: 1.25rem; font-weight: 800; letter-spacing: -0.02em; }
-    .post-body p { margin-bottom: 2rem; }
-    .post-body blockquote { border-left: 4px solid var(--accent); padding: 1.5rem; margin: 2.5rem 0; background: var(--card-bg); font-style: italic; }
-    .post-body img { width: 100%; height: auto; border-radius: 8px; margin: 2.5rem 0; }
-    .post-body ul, .post-body ol { margin-bottom: 2rem; padding-left: 1.5rem; }
-    .post-body li { margin-bottom: 0.75rem; }
-</style>
 
 
 

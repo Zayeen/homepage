@@ -12,8 +12,8 @@
 [data-theme="dark"] {
     --bg: #1a202c; /* Dark Slate Blue */
     --fg: #e2e8f0; /* Light Gray */
-    --accent: #4299e1; /* Lighter Blue for dark mode */
-    --accent-hover: #63b3ed; /* Even Lighter Blue */
+    --accent: #63b3ed; /* Brightened for better dark mode contrast */
+    --accent-hover: #90cdf4; /* Even Lighter Blue */
     --muted: #a0aec0; /* Lighter Muted Gray */
     --border: #2d3748; /* Dark Gray Border */
     --card-bg: #2d3748; /* Dark Gray */
@@ -23,8 +23,8 @@
     :root:not([data-theme="light"]) {
         --bg: #1a202c; /* Dark Slate Blue */
         --fg: #e2e8f0; /* Light Gray */
-        --accent: #4299e1; /* Lighter Blue for dark mode */
-        --accent-hover: #63b3ed; /* Even Lighter Blue */
+        --accent: #63b3ed; /* Brightened for better dark mode contrast */
+        --accent-hover: #90cdf4; /* Even Lighter Blue */
         --muted: #a0aec0; /* Lighter Muted Gray */
         --border: #2d3748; /* Dark Gray Border */
         --card-bg: #2d3748; /* Dark Gray */
@@ -193,19 +193,93 @@ section {
 /* Articles Grid */
 .articles-grid {
     display: grid;
-    gap: 5rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
     position: relative;
     z-index: 1;
+}
+
+/* Perfect Rectangle Mosaic for Index Page */
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr; /* Ensures equal height for the bottom cards */
+    gap: 1.25rem;
+}
+
+.featured-grid article.card-hero {
+    grid-column: span 2;
+    padding: 4rem;
+}
+
+.featured-grid article.card-hero h3 {
+    font-size: 3rem;
+}
+
+.featured-grid article.card-standard {
+    grid-column: span 1;
+}
+
+@media (max-width: 850px) {
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+    .featured-grid article.card-hero {
+        grid-column: span 1;
+        padding: 2.5rem;
+    }
+    .featured-grid article.card-hero h3 {
+        font-size: 2rem;
+    }
 }
 
 .article-card {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    padding: 0;
-    background: none;
-    border: none;
-    transition: all 0.3s ease;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.4); /* Much more visible in light mode */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Stronger white border for "edge" look */
+    border-radius: 2rem;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 8px 32px 0 rgba(49, 130, 206, 0.08); /* Faint blue shadow */
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .article-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.article-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.article-card:hover::before {
+    left: 100%;
+}
+
+.article-card:hover {
+    transform: translateY(-12px) scale(1.01);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .article-meta {
@@ -217,10 +291,10 @@ section {
 }
 
 .article-card h3 {
-    font-size: 2.75rem;
+    font-size: 2rem;
     font-weight: 800;
-    letter-spacing: -0.05em;
-    line-height: 1;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
     max-width: 100%;
 }
 
@@ -230,13 +304,9 @@ section {
     transition: color 0.2s;
 }
 
-.article-card h3 a:hover {
-    color: var(--accent);
-}
-
 .article-card p {
     color: var(--muted);
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     line-height: 1.5;
     max-width: 750px;
 }
@@ -255,10 +325,9 @@ section {
 
 .read-link:hover {
     gap: 0.75rem;
-    color: var(--accent);
 }
 
-/* Filters Redesign */
+/* Filters Styling */
 .blog-filters {
     position: sticky;
     top: 6rem;
@@ -288,7 +357,7 @@ section {
 }
 
 .filter-btn.active {
-    color: var(--fg);
+    color: var(--accent);
     font-weight: 800;
 }
 
@@ -298,61 +367,111 @@ section {
     color: var(--accent);
 }
 
-/* Badges */
-.tag-badge {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--muted);
-    background-color: var(--card-bg);
-    border: 1px solid var(--border);
-    padding: 0.4rem 0.8rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.article-card:hover .tag-badge {
-    border-color: var(--accent);
-    color: var(--accent);
-}
-
-/* Post Header */
+/* Individual Post Styling */
 .post-header {
-    padding: 8rem 0;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 4rem;
+    text-align: left;
+    padding: 0;
+    border: none;
+    margin: 0;
+    position: relative !important;
+    z-index: -1;
 }
 
-.post-header h1 {
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.04em;
+.post-meta-header {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
     margin-bottom: 1.5rem;
 }
 
-.post-meta {
-    color: var(--muted);
-    font-size: 0.9375rem;
-    font-weight: 500;
+.post-body h1:first-child { 
+    font-size: clamp(2.5rem, 8vw, 4rem); 
+    font-weight: 800; 
+    line-height: 1.1; 
+    letter-spacing: -0.05em; 
+    margin-top: 0;
+    margin-bottom: 3rem;
+    color: var(--fg);
 }
 
 .post-content {
     max-width: 800px;
     margin: 0 auto;
+    padding: 4rem 0 6rem;
 }
 
-.post-content h2 {
-    font-size: 2rem;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
+.post-content h2, .post-content h3 { 
+    margin-top: 3rem; 
+    margin-bottom: 1.25rem; 
+    font-weight: 800; 
+    letter-spacing: -0.02em; 
 }
+
+.post-content p { margin-bottom: 2rem; }
+
+.post-content blockquote { 
+    border-left: 4px solid var(--accent); 
+    padding: 1.5rem; 
+    margin: 2.5rem 0; 
+    background: var(--card-bg); 
+    font-style: italic; 
+}
+
+.post-content img { 
+    width: 100%; 
+    height: auto; 
+    border-radius: 8px; 
+    margin: 2.5rem 0; 
+}
+
+.post-content ul, .post-content ol { 
+    margin-bottom: 2rem; 
+    padding-left: 1.5rem; 
+}
+
+.post-content li { margin-bottom: 0.75rem; }
 
 .post-content a {
     color: var(--accent);
     text-decoration: underline;
+}
+
+.post-footer {
+    margin-top: 6rem; 
+    padding-top: 2rem; 
+    border-top: 1px solid var(--border);
+}
+
+.blog-hero, .about-hero {
+    padding: 6rem 0 4rem;
+}
+
+.blog-hero h1, .about-hero h1 {
+    font-size: clamp(3.5rem, 12vw, 5.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+    margin-bottom: 2rem;
+    color: var(--fg);
+}
+
+.about-intro {
+    max-width: 800px; 
+    margin-bottom: 6rem;
+}
+
+.mission-section {
+    padding: 4rem 0; 
+    border-top: 1px solid var(--border);
+}
+
+.mission-content {
+    font-size: 1.25rem; 
+    line-height: 1.6; 
+    color: var(--muted); 
+    max-width: 700px;
 }
 
 @media (max-width: 768px) {

@@ -11,9 +11,15 @@ title: Home Journal
 
     <section id="articles">
         <h2 class="section-title">{{ site.data.homepage.articles.title }}</h2>
-        <div class="articles-grid">
+        <div class="articles-grid featured-grid">
             {% for post in site.posts limit: 3 %}
-            <article class="article-card">
+            {% assign card_class = "" %}
+            {% if forloop.index == 1 %}
+                {% assign card_class = "card-hero" %}
+            {% else %}
+                {% assign card_class = "card-standard" %}
+            {% endif %}
+            <article class="article-card {{ card_class }}">
                 <div class="article-meta">
                     {% assign m = post.date | date: "%m" %}
                     {{ post.date | date: "%-d" }}
@@ -34,7 +40,7 @@ title: Home Journal
                     {{ post.date | date: "%Y" }} • {{ post.tags | join: ", " }}
                 </div>
                 <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-                <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+                <p>{{ post.description }}</p>
                 <a href="{{ post.url | relative_url }}" class="read-link">
                     {{ site.data.homepage.articles.read_more }}
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 4px;">
