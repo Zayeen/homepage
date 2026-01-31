@@ -22,7 +22,23 @@ title: Professional IoT Journal
             {% for post in site.posts %}
             <article class="article-card">
                 <div class="article-meta">
-                    {{ post.date | date: "%B %d, %Y" }} • {{ post.tags | join: ", " }}
+                    {% assign m = post.date | date: "%m" %}
+                    {{ post.date | date: "%-d" }}
+                    {% case m %}
+                      {% when '01' %}januari
+                      {% when '02' %}februari
+                      {% when '03' %}maart
+                      {% when '04' %}april
+                      {% when '05' %}mei
+                      {% when '06' %}juni
+                      {% when '07' %}juli
+                      {% when '08' %}augustus
+                      {% when '09' %}september
+                      {% when '10' %}oktober
+                      {% when '11' %}november
+                      {% when '12' %}december
+                    {% endcase %}
+                    {{ post.date | date: "%Y" }} • {{ post.tags | join: ", " }}
                 </div>
                 <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
                 <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
