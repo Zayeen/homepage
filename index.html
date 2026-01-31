@@ -19,7 +19,7 @@ title: Professional IoT Journal
     <section id="articles">
         <h2 class="section-title">{{ site.data.homepage.articles.title }}</h2>
         <div class="articles-grid">
-            {% for post in site.posts %}
+            {% for post in site.posts limit: 3 %}
             <article class="article-card">
                 <div class="article-meta">
                     {% assign m = post.date | date: "%m" %}
@@ -50,6 +50,14 @@ title: Professional IoT Journal
                 </a>
             </article>
             {% endfor %}
+        </div>
+        <div style="margin-top: 4rem; text-align: center;">
+            <a href="{{ '/blog' | relative_url }}" class="read-link" style="font-size: 1rem; border: 1px solid var(--border); padding: 0.75rem 1.5rem; border-radius: 0.75rem; transition: all 0.2s;">
+                Bekijk alle artikelen
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 4px;">
+                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
         </div>
     </section>
 </div>
