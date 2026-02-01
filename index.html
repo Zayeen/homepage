@@ -8,13 +8,23 @@ title: Home Journal
         <h1>{{ site.data.homepage.hero.title }}</h1>
     </section>
 
-    <div class="tag-filter-container">
-        <div class="tag-filter-scroll">
-            <button class="tag-btn active" data-filter="all">Alles</button>
-            {% assign all_categories = site.posts | map: 'categories' | flatten | uniq | sort %}
-            {% for category in all_categories %}
-                <button class="tag-btn" data-filter="cat-{{ category | slugify }}">{{ category }}</button>
-            {% endfor %}
+    <div class="controls-container">
+        <div class="tag-filter-container">
+            <div class="tag-filter-scroll">
+                <button class="tag-btn active" data-filter="all">Alles</button>
+                {% assign all_categories = site.posts | map: 'categories' | flatten | uniq | sort %}
+                {% for category in all_categories %}
+                    <button class="tag-btn" data-filter="cat-{{ category | slugify }}">{{ category }}</button>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="search-container">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="article-search" placeholder="Zoek artikelen..." aria-label="Zoek door artikelen">
         </div>
     </div>
 
@@ -29,25 +39,31 @@ title: Home Journal
             {% endfor %}
             <article class="article-card homepage-post-item {{ cat_classes }}" {% if forloop.index > 5 %}style="display: none;" data-hidden="true"{% endif %}>
                 <div class="article-meta">
-                    {% assign m = post.date | date: "%m" %}
-                    {{ post.date | date: "%-d" }}
-                    {% case m %}
-                      {% when '01' %}januari
-                      {% when '02' %}februari
-                      {% when '03' %}maart
-                      {% when '04' %}april
-                      {% when '05' %}mei
-                      {% when '06' %}juni
-                      {% when '07' %}juli
-                      {% when '08' %}augustus
-                      {% when '09' %}september
-                      {% when '10' %}oktober
-                      {% when '11' %}november
-                      {% when '12' %}december
-                    {% endcase %}
-                    {{ post.date | date: "%Y" }} • {{ post.tags | join: ", " }}
+                    <span class="date">
+                        {% assign m = post.date | date: "%m" %}
+                        {{ post.date | date: "%-d" }}
+                        {% case m %}
+                          {% when '01' %}januari
+                          {% when '02' %}februari
+                          {% when '03' %}maart
+                          {% when '04' %}april
+                          {% when '05' %}mei
+                          {% when '06' %}juni
+                          {% when '07' %}juli
+                          {% when '08' %}augustus
+                          {% when '09' %}september
+                          {% when '10' %}oktober
+                          {% when '11' %}november
+                          {% when '12' %}december
+                        {% endcase %}
+                        {{ post.date | date: "%Y" }}
+                    </span>
+                    <span class="meta-dot">•</span>
+                    {% assign words = post.content | strip_html | number_of_words %}
+                    {% assign read_time = words | divided_by: 200 | at_least: 1 %}
+                    <span class="reading-time">{{ read_time }} min leestijd</span>
                 </div>
-                <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                <h3 class="article-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
                 <p>{{ post.description }}</p>
                 <a href="{{ post.url | relative_url }}" class="read-link">
                     {{ site.data.homepage.articles.read_more }}
@@ -74,19 +90,24 @@ title: Home Journal
         const tagBtns = document.querySelectorAll('.tag-btn');
         const posts = document.querySelectorAll('.homepage-post-item');
         const loadMoreBtn = document.getElementById('load-more-btn');
-        const grid = document.getElementById('homepage-grid');
+        const searchInput = document.getElementById('article-search');
         let currentLimit = 5;
         let activeFilter = 'all';
+        let searchQuery = '';
 
         function updateLayout() {
             let visibleIndex = 1;
             posts.forEach((post) => {
                 post.classList.remove('card-1', 'card-2', 'card-3', 'card-4', 'card-5');
                 
+                const title = post.querySelector('.article-title').textContent.toLowerCase();
                 const matchesFilter = activeFilter === 'all' || post.classList.contains(activeFilter);
+                const matchesSearch = searchQuery === '' || title.includes(searchQuery);
+                
+                const isVisible = matchesFilter && matchesSearch;
                 const withinLimit = visibleIndex <= currentLimit;
 
-                if (matchesFilter && withinLimit) {
+                if (isVisible && withinLimit) {
                     post.style.display = 'flex';
                     if (visibleIndex <= 5) {
                         post.classList.add(`card-${visibleIndex}`);
@@ -98,13 +119,25 @@ title: Home Journal
             });
 
             // Show/hide load more button
-            const totalMatching = Array.from(posts).filter(p => activeFilter === 'all' || p.classList.contains(activeFilter)).length;
+            const totalMatching = Array.from(posts).filter(p => {
+                const title = p.querySelector('.article-title').textContent.toLowerCase();
+                const matchesFilter = activeFilter === 'all' || p.classList.contains(activeFilter);
+                const matchesSearch = searchQuery === '' || title.includes(searchQuery);
+                return matchesFilter && matchesSearch;
+            }).length;
+
             if (currentLimit >= totalMatching) {
                 loadMoreBtn.parentElement.style.display = 'none';
             } else {
                 loadMoreBtn.parentElement.style.display = 'block';
             }
         }
+
+        searchInput.addEventListener('input', function(e) {
+            searchQuery = e.target.value.toLowerCase();
+            currentLimit = 5;
+            updateLayout();
+        });
 
         tagBtns.forEach(btn => {
             btn.addEventListener('click', function() {
