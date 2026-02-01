@@ -191,33 +191,14 @@ section {
     z-index: 1;
 }
 
-/* Refined 5-Article Layout */
+/* Uniform Article Grid */
 .featured-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 }
 
-/* Feature the latest article across the top */
-.featured-grid article.card-1 {
-    grid-column: span 2;
-    padding: 3.5rem;
-    background: rgba(49, 130, 206, 0.05); /* Very subtle accent tint for the main card */
-}
-
-[data-theme="dark"] .featured-grid article.card-1 {
-    background: rgba(255, 255, 255, 0.04);
-}
-
-.featured-grid article.card-1 h3 {
-    font-size: 2.5rem;
-}
-
-/* Remaining 4 articles in a neat 2x2 grid */
-.featured-grid article.card-2,
-.featured-grid article.card-3,
-.featured-grid article.card-4,
-.featured-grid article.card-5 {
+.featured-grid article {
     grid-column: span 1;
 }
 
@@ -225,17 +206,6 @@ section {
     .featured-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-    }
-    .featured-grid article.card-1,
-    .featured-grid article.card-2,
-    .featured-grid article.card-3,
-    .featured-grid article.card-4,
-    .featured-grid article.card-5 {
-        grid-column: span 1;
-        padding: 2rem;
-    }
-    .featured-grid article.card-1 h3 {
-        font-size: 2rem;
     }
 }
 
