@@ -64,7 +64,7 @@ header {
     top: 0;
     background-color: rgba(247, 250, 252, 0.85); /* Updated Light Mode RGBA */
     backdrop-filter: blur(20px);
-    z-index: 100;
+    z-index: 1000; /* Verhoogd om boven alle content te blijven */
 }
 
 [data-theme="dark"] header {
@@ -350,7 +350,7 @@ section {
     border: none;
     margin: 0;
     position: relative !important;
-    z-index: -1;
+    z-index: 1; /* Was -1, wat problemen kan geven met links/selectie */
 }
 
 .post-meta-header {
@@ -479,14 +479,13 @@ section {
 }
 
 .about-title {
-    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-size: clamp(2.5rem, 8vw, 4rem);
     font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.05em;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
     color: var(--fg);
     max-width: 600px;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 .about-content-inner {
@@ -509,11 +508,26 @@ section {
     font-weight: 600;
 }
 
+/* Controls Layout */
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 850px) {
+    .controls-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
 /* Tag Filter Styling */
 .tag-filter-container {
-    margin-bottom: 0.5rem;
     overflow: hidden;
-    width: fit-content; /* Make as wide as its content (up to container width) */
+    flex: 1;
 }
 
 .tag-filter-scroll {
@@ -547,6 +561,79 @@ section {
     background: var(--fg);
     color: var(--bg);
     border-color: var(--fg);
+}
+
+/* Search Styling */
+.search-container {
+    position: relative;
+    width: 250px;
+}
+
+@media (max-width: 850px) {
+    .search-container {
+        width: 100%;
+    }
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+}
+
+#article-search {
+    width: 100%;
+    padding: 0.6rem 1rem 0.6rem 2.75rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--fg);
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+#article-search:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+}
+
+/* Reading Time & Meta */
+.article-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.meta-dot {
+    color: var(--border);
+}
+
+.reading-time {
+    color: var(--muted);
+    font-weight: 500;
+}
+
+/* Reading Progress Bar */
+.progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: transparent;
+    z-index: 1000;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.1s ease-out;
 }
 
 @media (max-width: 768px) {
