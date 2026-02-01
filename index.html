@@ -6,20 +6,28 @@ title: Home Journal
 <div class="container">
     <section class="hero">
         <h1>{{ site.data.homepage.hero.title }}</h1>
-        <p>{{ site.data.homepage.hero.description }}</p>
     </section>
+
+    <div class="tag-filter-container">
+        <div class="tag-filter-scroll">
+            <button class="tag-btn active" data-filter="all">Alles</button>
+            {% assign all_categories = site.posts | map: 'categories' | flatten | uniq | sort %}
+            {% for category in all_categories %}
+                <button class="tag-btn" data-filter="cat-{{ category | slugify }}">{{ category }}</button>
+            {% endfor %}
+        </div>
+    </div>
 
     <section id="articles">
         <h2 class="section-title">{{ site.data.homepage.articles.title }}</h2>
-        <div class="articles-grid featured-grid">
-            {% for post in site.posts limit: 3 %}
-            {% assign card_class = "" %}
-            {% if forloop.index == 1 %}
-                {% assign card_class = "card-hero" %}
-            {% else %}
-                {% assign card_class = "card-standard" %}
-            {% endif %}
-            <article class="article-card {{ card_class }}">
+        <div class="articles-grid featured-grid" id="homepage-grid">
+            {% for post in site.posts %}
+            {% assign cat_classes = "" %}
+            {% for cat in post.categories %}
+                {% assign slug = cat | slugify %}
+                {% assign cat_classes = cat_classes | append: " cat-" | append: slug %}
+            {% endfor %}
+            <article class="article-card homepage-post-item {{ cat_classes }}" {% if forloop.index > 5 %}style="display: none;" data-hidden="true"{% endif %}>
                 <div class="article-meta">
                     {% assign m = post.date | date: "%m" %}
                     {{ post.date | date: "%-d" }}
@@ -50,13 +58,81 @@ title: Home Journal
             </article>
             {% endfor %}
         </div>
-        <div style="margin-top: 4rem; text-align: center;">
-            <a href="{{ '/blog' | relative_url }}" class="read-link" style="font-size: 1rem; border: 1px solid var(--border); padding: 0.75rem 1.5rem; border-radius: 0.75rem; transition: all 0.2s;">
-                Bekijk alle artikelen
+        <div id="load-more-container" style="margin-top: 4rem; text-align: center;">
+            <button id="load-more-btn" class="read-link" style="font-size: 1rem; border: 1px solid var(--border); padding: 0.75rem 1.5rem; border-radius: 0.75rem; transition: all 0.2s; background: none; cursor: pointer;">
+                Laad meer artikelen
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 4px;">
                     <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-            </a>
+            </button>
         </div>
     </section>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tagBtns = document.querySelectorAll('.tag-btn');
+        const posts = document.querySelectorAll('.homepage-post-item');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const grid = document.getElementById('homepage-grid');
+        let currentLimit = 5;
+        let activeFilter = 'all';
+
+        function updateLayout() {
+            let visibleIndex = 1;
+            posts.forEach((post) => {
+                post.classList.remove('card-1', 'card-2', 'card-3', 'card-4', 'card-5');
+                
+                const matchesFilter = activeFilter === 'all' || post.classList.contains(activeFilter);
+                const withinLimit = visibleIndex <= currentLimit;
+
+                if (matchesFilter && withinLimit) {
+                    post.style.display = 'flex';
+                    if (visibleIndex <= 5) {
+                        post.classList.add(`card-${visibleIndex}`);
+                    }
+                    visibleIndex++;
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+
+            // Show/hide load more button
+            const totalMatching = Array.from(posts).filter(p => activeFilter === 'all' || p.classList.contains(activeFilter)).length;
+            if (currentLimit >= totalMatching) {
+                loadMoreBtn.parentElement.style.display = 'none';
+            } else {
+                loadMoreBtn.parentElement.style.display = 'block';
+            }
+        }
+
+        tagBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                tagBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                activeFilter = this.getAttribute('data-filter');
+                currentLimit = 5; // Reset limit on filter change
+                updateLayout();
+            });
+        });
+
+        loadMoreBtn.addEventListener('click', function() {
+            currentLimit += 5;
+            updateLayout();
+        });
+
+        // Intersection Observer for Lazy Loading
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadMoreBtn.click();
+                }
+            });
+        }, { threshold: 0.1 });
+
+        observer.observe(loadMoreBtn);
+
+        // Initial layout
+        updateLayout();
+    });
+</script>

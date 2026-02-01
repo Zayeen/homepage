@@ -129,24 +129,16 @@ nav {
 
 /* Hero */
 .hero {
-    padding: 10rem 0 6rem;
+    padding: 6rem 0 3rem;
 }
 
 .hero h1 {
-    font-size: clamp(3.5rem, 12vw, 5.5rem);
+    font-size: clamp(2.5rem, 8vw, 4rem);
     font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.06em;
-    margin-bottom: 2rem;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin-bottom: 0;
     color: var(--fg);
-}
-
-.hero p {
-    font-size: 1.5rem;
-    color: var(--muted);
-    max-width: 650px;
-    font-weight: 450;
-    line-height: 1.4;
 }
 
 /* Section */
@@ -199,36 +191,50 @@ section {
     z-index: 1;
 }
 
-/* Perfect Rectangle Mosaic for Index Page */
+/* Refined 5-Article Layout */
 .featured-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 1fr; /* Ensures equal height for the bottom cards */
-    gap: 1.25rem;
+    gap: 2rem;
 }
 
-.featured-grid article.card-hero {
+/* Feature the latest article across the top */
+.featured-grid article.card-1 {
     grid-column: span 2;
-    padding: 4rem;
+    padding: 3.5rem;
+    background: rgba(49, 130, 206, 0.05); /* Very subtle accent tint for the main card */
 }
 
-.featured-grid article.card-hero h3 {
-    font-size: 3rem;
+[data-theme="dark"] .featured-grid article.card-1 {
+    background: rgba(255, 255, 255, 0.04);
 }
 
-.featured-grid article.card-standard {
+.featured-grid article.card-1 h3 {
+    font-size: 2.5rem;
+}
+
+/* Remaining 4 articles in a neat 2x2 grid */
+.featured-grid article.card-2,
+.featured-grid article.card-3,
+.featured-grid article.card-4,
+.featured-grid article.card-5 {
     grid-column: span 1;
 }
 
 @media (max-width: 850px) {
     .featured-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
-    .featured-grid article.card-hero {
+    .featured-grid article.card-1,
+    .featured-grid article.card-2,
+    .featured-grid article.card-3,
+    .featured-grid article.card-4,
+    .featured-grid article.card-5 {
         grid-column: span 1;
-        padding: 2.5rem;
+        padding: 2rem;
     }
-    .featured-grid article.card-hero h3 {
+    .featured-grid article.card-1 h3 {
         font-size: 2rem;
     }
 }
@@ -291,10 +297,10 @@ section {
 }
 
 .article-card h3 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: 1.2;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
     max-width: 100%;
 }
 
@@ -306,7 +312,7 @@ section {
 
 .article-card p {
     color: var(--muted);
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.5;
     max-width: 750px;
 }
@@ -472,6 +478,103 @@ section {
     line-height: 1.6; 
     color: var(--muted); 
     max-width: 700px;
+}
+
+/* Over-pagina Verfijnde Stijlen */
+.about-container {
+    max-width: 800px; /* Iets breder voor betere tekstbalans */
+    margin: 0 auto;
+    padding: 8rem 2rem;
+}
+
+.about-header {
+    margin-bottom: 5rem;
+    text-align: left; /* Terug naar links voor rustigere uitlijning */
+}
+
+.about-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(49, 130, 206, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+}
+
+.about-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    color: var(--fg);
+    max-width: 600px;
+}
+
+.about-content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 650px; /* Tekstbreedte beperken voor leesbaarheid */
+}
+
+.about-p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    color: var(--fg); /* Iets donkerder voor meer 'scherpte' */
+    font-weight: 450;
+    text-align: left; /* Consistent links uitgelijnd */
+}
+
+.about-p strong {
+    color: var(--fg);
+    font-weight: 600;
+}
+
+/* Tag Filter Styling */
+.tag-filter-container {
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    width: fit-content; /* Make as wide as its content (up to container width) */
+}
+
+.tag-filter-scroll {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.tag-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem; /* Rectangular with slight rounding */
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.tag-btn:hover {
+    border-color: var(--accent);
+    color: var(--fg);
+}
+
+.tag-btn.active {
+    background: var(--fg);
+    color: var(--bg);
+    border-color: var(--fg);
 }
 
 @media (max-width: 768px) {
