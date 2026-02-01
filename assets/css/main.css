@@ -515,6 +515,8 @@ section {
     letter-spacing: -0.05em;
     color: var(--fg);
     max-width: 600px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2rem;
 }
 
 .about-content-inner {
